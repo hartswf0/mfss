@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>MFSS Global Hub — Live Analytical Feed</title> <!-- Updated Title -->
+<meta name="description" content="The MFSS Global Hub: A live analytical feed for comparative analysis, revealing deep structural risks and emergent patterns across physical and algorithmic economies, from snack supply chains to AI systems."/> <!-- Updated Meta Description -->
+<link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Source+Sans+3:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  /* =================
+     CORE / RESET / GLOBAL THEME: SOCIAL AISLE
+     ================= */
+  :root {
+    --bg-page: #fefcfb; /* Off-white, slightly warm for overall page */
+    --bg-app: #ffffff; /* Clean white for app UI elements like cards, widgets */
+    --text-primary: #141414; /* Dark text for readability */
+    --text-secondary: #555555; /* Muted text */
+    --border-app: #e0e0e0; /* Subtle light border for UI elements */
+    --shadow-app: 0 4px 12px rgba(0,0,0,0.08); /* Soft, modern shadow */
+    --shadow-post: 0 2px 8px rgba(0,0,0,0.06); /* Even softer for individual posts */
+    --accent-fallback: #007bff; /* Generic blue accent */
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0; font-family:"Source Sans 3",system-ui,sans-serif; background:var(--bg-page); color:var(--text-primary)}
+  h1,h2,h3,h4,h5{margin:0 0 .4rem; font-family:"Source Sans 3",system-ui,sans-serif; font-weight:800; color:var(--text-primary);}
+  h1{font-family:Shrikhand,cursive; font-size:clamp(1.8rem,5vw,2.6rem); color:var(--text-primary);}
+  a{color:var(--accent-fallback); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 clamp(1rem,3vw,1.5rem)}
+
+  /* =================
+     GLOBAL NAV
+     ================= */
+  header{position:sticky; top:0; z-index:30; background:var(--bg-app); border-bottom:1px solid var(--border-app); box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:clamp(.6rem,2vw,1rem) clamp(1rem,3vw,1.5rem); gap:clamp(.75rem,2vw,1rem); flex-wrap:wrap;}
+  .brand{display:flex; align-items:center; gap:.6rem}
+  .brand-mark{width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,#FFC900 0%,#FFB300 100%); border:3px solid #E21C2A; box-shadow:0 0 0 2px #E21C2A;}
+  .brand-type{font-family:Shrikhand,cursive; font-size:1.35rem; color:var(--text-primary);}
+  .tabs{display:flex; flex-wrap:wrap; gap:.4rem}
+  .tab{font-family:"Source Sans 3",system-ui,sans-serif; font-weight:600; padding:.5rem .85rem; border:1px solid var(--border-app); border-radius:999px; background:var(--bg-app); color:var(--text-secondary); text-decoration:none; font-size:clamp(.8rem,2vw,.9rem); transition:background .2s, border-color .2s, color .2s;}
+  .tab:hover{background:var(--border-app); border-color:var(--text-secondary); color:var(--text-primary);}
+  .tab[aria-current="page"]{background:var(--text-primary); color:var(--bg-app); border-color:var(--text-primary);}
+
+  /* =================
+     PLATFORM SECTIONS (Individual Branding, Unified Structure)
+     ================= */
+  section.platform-section{padding:clamp(1.2rem,4vw,2rem) 0 clamp(1.2rem,4vw,2rem); background:var(--bg-page); border-bottom:1px solid var(--border-app);}
+
+  .hero{
+    display:grid; grid-template-columns:1fr; gap:clamp(1rem,3vw,1.5rem); align-items:center; text-align:center;
+    padding-bottom:clamp(1.2rem,4vw,2rem);
+    background:var(--hero-bg-gradient, linear-gradient(135deg, var(--brand-color-light), var(--brand-color-dark)));
+    border-bottom:1px solid var(--border-app);
+    box-shadow:0 4px 8px rgba(0,0,0,0.1);
+    color:var(--hero-text-color, var(--text-primary));
+    padding-top:clamp(1.5rem,5vw,2.5rem);
+    border-radius:28px;
+  }
+  @media (min-width: 900px){ .hero{grid-template-columns:1.05fr .95fr; text-align:left;} .hero .cta-row{justify-content:flex-start;}}
+  .hero h1{color:var(--hero-text-color, var(--text-primary));}
+  .lede{font-size:clamp(1rem,3vw,1.05rem); max-width:55ch; opacity:.9; margin:0 auto; color:var(--hero-text-color, var(--text-secondary)); font-weight:normal;} /* Lede text normal weight */
+  @media (min-width: 900px){ .lede{margin:0;} }
+  .lede strong { font-weight: 800; } /* Specific bolding within lede */
+  .cta-row{display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.8rem; justify-content:center;}
+  .btn{
+    display:inline-block; border-radius:999px; padding:.7rem 1.1rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:.3px; cursor:pointer;
+    font-size:clamp(.9rem,2vw,1rem);
+    background:var(--brand-color-accent, var(--accent-fallback)); color:var(--bg-app);
+    border:1px solid var(--brand-color-accent, var(--accent-fallback));
+    transition:background .2s, border-color .2s, color .2s, opacity .2s;
+  }
+  .btn:hover{opacity:.9;}
+  .facts-toggle { background: var(--hero-btn-bg, var(--bg-app)); color: var(--hero-btn-color, var(--text-primary)); border-color: var(--hero-btn-border-color, var(--text-primary)); }
+  .facts-toggle:hover { background: var(--hero-btn-hover-bg, var(--text-primary)); color: var(--hero-btn-hover-color, var(--bg-app)); }
+
+
+  /* Mascot SVG Integration - Colorized */
+  .mascot{width:min(420px,90vw); margin:auto; filter:drop-shadow(0 10px 15px rgba(0,0,0,0.15));}
+  .mascot rect[fill="transparent"] { fill: transparent; }
+
+  .shell{display:grid; grid-template-columns:1fr; gap:clamp(1rem,3vw,1.5rem); align-items:start}
+  @media (min-width: 1100px){ .shell{grid-template-columns:260px 1fr 290px;}}
+  aside.left, aside.right{
+    background:var(--bg-app); border:1px solid var(--border-app); border-radius:12px;
+    box-shadow:var(--shadow-app);
+    padding:clamp(1rem,3vw,1.2rem); margin-bottom:clamp(1rem,3vw,1.5rem);
+  }
+  @media (min-width: 1100px){ aside.left, aside.right{position:sticky; top:72px; margin-bottom:0;}}
+
+  .widget h3{font-size:clamp(1rem,3vw,1.1rem); letter-spacing:.2px; color:var(--text-primary);}
+  .trends li{list-style:none; margin:.5rem 0; padding:0}
+  .trend{display:block; padding:.4rem .6rem; border-radius:8px; background:var(--border-app); border:1px solid var(--border-app); color:var(--text-secondary); font-size:clamp(.85rem,1.9vw,.95rem);}
+
+  /* Stories Carousel */
+  .stories-carousel {
+    display: flex; gap: 0.8rem; padding: 0.8rem 0;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    margin-bottom: clamp(1rem,3vw,1.5rem);
+    border-bottom: 1px solid var(--border-app);
+  }
+  .stories-carousel::-webkit-scrollbar { display: none; }
+  .stories-carousel { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .story-item {
+    display: inline-flex; flex-direction: column; align-items: center;
+    text-decoration: none; color: var(--text-secondary);
+    font-size: clamp(0.75rem, 1.8vw, 0.85rem); font-weight: 600;
+    margin-right: 0.2rem;
+    flex-shrink: 0;
+  }
+  .story-avatar {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: var(--avatar-story-bg, #eee);
+    border: 3px solid var(--brand-color-accent, var(--accent-fallback));
+    padding: 2px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.3rem;
+    overflow: hidden;
+    transition: transform 0.1s ease-in-out;
+  }
+  .story-item:active .story-avatar { transform: scale(0.95); }
+  .story-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .story-text { max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .composer{
+    display:grid; grid-template-columns:1fr auto; gap:.5rem; background:var(--bg-app);
+    border-radius:12px; border:1px solid var(--border-app); padding:.7rem; margin-top:1rem;
+    box-shadow:var(--shadow-app);
+  }
+  .composer textarea{
+    min-height:72px; resize:vertical; border:0; outline:0; padding:.5rem; font:inherit;
+    background:var(--border-app); color:var(--text-primary); border-radius:6px;
+    font-size:clamp(.9rem,2vw,1rem);
+  }
+  .feed{display:grid; gap:1rem; margin-top:clamp(1rem,3vw,1.5rem)}
+  .post, .facts-card {
+    background:var(--bg-app); border-radius:12px; border:1px solid var(--border-app);
+    padding:clamp(1rem,3vw,1.2rem); box-shadow:var(--shadow-post);
+    display:flex; flex-direction:column;
+  }
+  .post-header{display:flex; align-items:center; gap:.6rem; font-weight:600; font-size:clamp(.9rem,2vw,1rem); margin-bottom:.5rem;}
+  .avatar{width:36px; height:36px; border-radius:50%; background:var(--avatar-grad, linear-gradient(135deg, #ddd, #bbb)); border:2px solid var(--border-app); flex-shrink:0;}
+  .chip-action{
+    display:inline-flex; align-items:center; gap:.35rem; padding:.35rem .7rem; border-radius:999px;
+    border:1px solid var(--border-app); font-weight:600; background:var(--bg-app);
+    color:var(--text-secondary); cursor:pointer; font-size:clamp(.8rem,1.8vw,.9rem);
+    transition:background .2s, border-color .2s, color .2s;
+  }
+  .chip-action:hover{background:var(--brand-color-accent, var(--accent-fallback)); color:var(--bg-app); border-color:var(--brand-color-accent, var(--accent-fallback));}
+  .chip-action svg{width:1.1em;height:1.1em; color:var(--text-secondary); transition:color .2s;}
+  .chip-action:hover svg{color:var(--bg-app);}
+  .counts{display:flex; gap:.6rem; align-items:center; font-weight:600; opacity:.8; font-size:clamp(.8rem,2vw,.9rem); color:var(--text-secondary);}
+  .counts svg{width:0.7em;height:0.7em; color:var(--text-secondary);}
+  .post p{color:var(--text-primary); font-size:clamp(.95rem,2vw,1.05rem);}
+
+  .link-chip{
+    display:inline-flex; align-items:center; gap:.35rem; padding:.25rem .55rem; border-radius:8px;
+    background:var(--border-app); border:1px solid var(--border-app); font-weight:600;
+    color:var(--text-secondary); font-size:clamp(.8rem,2vw,.9rem);
+    transition:background .2s, border-color .2s, color .2s;
+  }
+  .link-chip:hover{background:var(--brand-color-accent, var(--accent-fallback)); border-color:var(--brand-color-accent, var(--accent-fallback)); color:var(--bg-app);}
+  .link-chip svg{width:14px; height:14px; color:var(--text-secondary); transition:color .2s;}
+  .link-chip:hover svg{color:var(--bg-app);}
+
+  /* Facts Card (Pinned Post) */
+  .facts-card{
+    margin-bottom:1rem; border-left:4px solid var(--brand-color-accent, var(--accent-fallback));
+    padding-left:clamp(1rem,3vw,1.2rem);
+    background:var(--bg-app); color:var(--text-primary);
+  }
+  .facts-card h4{font-size:clamp(1.1rem,3vw,1.3rem); margin-bottom:.8rem;}
+  .fact-section h5{font-size:clamp(1rem,2.5vw,1.1rem); font-weight:800; opacity:.9; margin:clamp(1rem,3vw,1.5rem) 0 .4rem;}
+  .fact-item{
+    background:transparent;
+    border:none;
+    border-radius:0;
+    padding:clamp(.6rem,2vw,.8rem) clamp(.7rem,2vw,1rem);
+    margin-bottom:.5rem;
+    font-size:clamp(.9rem,2vw,.95rem); color:var(--text-primary);
+  }
+  .fact-item strong { font-weight: 800; } /* For explicit bolding within fact items */
+  .fact-item small{display:block; opacity:.8; font-size:clamp(.8rem,1.8vw,.85rem); color:var(--text-secondary);}
+  /* --- CRITICAL CHANGE FOR QUOTES --- */
+  .fact-item blockquote.quote {
+    display: block;
+    margin: .6rem 0 .2rem 0;
+    padding: .8rem 1rem;
+    background: var(--border-app);
+    border-left: 4px solid var(--brand-color-accent, var(--accent-fallback));
+    border-radius: 8px;
+    font-style: normal;
+    font-weight: 400; /* Regular weight for scannability as per image */
+    font-size: clamp(.85rem,1.9vw,.95rem);
+    color: var(--text-primary);
+    line-height: 1.4;
+    white-space: normal;
+  }
+  /* --- END CRITICAL CHANGE --- */
+  .ref-link{color:var(--text-secondary); font-weight:400; text-decoration:none; margin-left:.4em; cursor:pointer;}
+  .ref-link:hover{text-decoration:underline; color:var(--brand-color-accent, var(--accent-fallback));}
+
+  /* =================
+     THEMES - Individual Brand Styling
+     ================= */
+  /* Sora (Lay's) */
+  #sora{
+    --brand-color-light: #FFC900; --brand-color-dark: #FFB300;
+    --brand-color-accent: #E21C2A;
+    --hero-bg-gradient: linear-gradient(135deg, var(--brand-color-light) 0%, var(--brand-color-dark) 100%);
+    --hero-text-color: #2b0002;
+    --hero-btn-bg: var(--bg-app); --hero-btn-color: var(--text-primary); --hero-btn-border-color: var(--text-primary);
+    --hero-btn-hover-bg: var(--text-primary); --hero-btn-hover-color: var(--bg-app);
+    --avatar-grad: linear-gradient(135deg, #ffd84d, #ffc900);
+  }
+  #sora .chip-action{background:var(--brand-color-light); color:var(--text-primary); border-color:var(--brand-color-light);}
+  #sora .chip-action:hover{background:var(--brand-color-accent); color:var(--bg-app); border-color:var(--brand-color-accent);}
+  #sora .mascot .chip-bag-main { fill: var(--brand-color-light); stroke: var(--brand-color-accent); }
+  #sora .mascot .chip-bag-top { fill: var(--bg-app); stroke: var(--brand-color-accent); }
+  #sora .mascot .chip-text { fill: var(--brand-color-accent); }
+  #sora .mascot .potato-chip { fill: #fff6a0; stroke: #d49b00; }
+  #sora .mascot .face-features circle, #sora .mascot .face-features path { fill: var(--brand-color-accent); stroke: var(--brand-color-accent); }
+
+  /* Meta Vibes (McDonald's) */
+  #meta{
+    --brand-color-light: #FFD34F; --brand-color-dark: #FFC000;
+    --brand-color-accent: #DA291C;
+    --hero-bg-gradient: linear-gradient(135deg, var(--brand-color-light) 0%, var(--brand-color-dark) 100%);
+    --hero-text-color: #333;
+    --hero-btn-bg: var(--bg-app); --hero-btn-color: var(--text-primary); --hero-btn-border-color: var(--text-primary);
+    --hero-btn-hover-bg: var(--text-primary); --hero-btn-hover-color: var(--bg-app);
+    --avatar-grad: linear-gradient(135deg, #ffdbd4, #ffb299);
+  }
+  #meta .mascot .clown-face { fill: #ffd1dc; stroke: var(--brand-color-accent); }
+  #meta .mascot .fry-box { fill: var(--brand-color-light); stroke: var(--brand-color-accent); }
+  #meta .mascot .fries rect { fill: var(--brand-color-accent); }
+  #meta .mascot .face-details circle, #meta .mascot .face-details rect, #meta .mascot .face-details path { fill: #000; stroke: var(--brand-color-accent); }
+
+  /* Nano Banana (Google / United Fruit) */
+  #nano{
+    --brand-color-light: #4285F4; --brand-color-dark: #34A853;
+    --brand-color-accent: #EA4335;
+    --hero-bg-gradient: linear-gradient(135deg, #A7D9FF 0%, var(--brand-color-light) 100%);
+    --hero-text-color: #fff;
+    --hero-btn-bg: var(--bg-app); --hero-btn-color: var(--text-primary); --hero-btn-border-color: var(--text-primary);
+    --hero-btn-hover-bg: var(--text-primary); --hero-btn-hover-color: var(--bg-app);
+    --avatar-grad: linear-gradient(135deg, #c2e0ff, #8ab4f8);
+  }
+  #nano .hero{position:relative;}
+  #nano .hero::after{content:""; position:absolute; inset:-20% -10% auto auto; width:120%; height:120%; background-image: radial-gradient(rgba(26,115,232,.12) 1px, transparent 1px); background-size:6px 6px; mix-blend-mode:multiply; opacity:.5; pointer-events:none}
+  #nano .mascot .face-outline { fill: #ffe9b9; stroke: var(--brand-color-light); }
+  #nano .mascot .hat-fruit { fill: var(--brand-color-accent); }
+  #nano .mascot .hat-stripe1 { stroke: #fbbc05; }
+  #nano .mascot .hat-stripe2 { stroke: var(--brand-color-dark); }
+  #nano .mascot .basket-body { fill: #fbbc05; stroke: var(--brand-color-light); }
+  #nano .mascot .basket-bananas g { fill: #fbbc05; stroke: #de9e00; }
+
+  /* MidJourney (Waffle House) */
+  #midj{
+    --brand-color-light: #5333ed; --brand-color-dark: #291a87;
+    --brand-color-accent: #ff6ad5;
+    --brand-color-secondary-accent: #27f4ff;
+    --hero-bg-gradient: linear-gradient(135deg, #8c7bff 0%, var(--brand-color-light) 100%);
+    --hero-text-color: #fff;
+    --hero-btn-bg: var(--bg-app); --hero-btn-color: var(--text-primary); --hero-btn-border-color: var(--text-primary);
+    --hero-btn-hover-bg: var(--text-primary); --hero-btn-hover-color: var(--bg-app);
+    --avatar-grad: linear-gradient(135deg, #a7baff, #879bff);
+  }
+  #midj .mascot .potato-body { fill: #a3724c; stroke: var(--brand-color-light); }
+  #midj .mascot .eyes circle:nth-child(1) { fill: var(--brand-color-accent); }
+  #midj .mascot .eyes circle:nth-child(2) { fill: var(--brand-color-secondary-accent); }
+  #midj .mascot .accessories-main { fill: var(--brand-color-light); }
+  #midj .mascot .accessories-accent { fill: var(--brand-color-accent); }
+
+
+  /* UTIL */
+  .sr-only{position:absolute!important; width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  footer{padding:clamp(1.2rem,3vw,1.5rem) 0; border-top:1px solid var(--border-app); background:var(--bg-app); color:var(--text-secondary);}
+  .micro{opacity:.7; font-size:clamp(.8rem,1.8vw,.9rem); color:var(--text-secondary);}
+
+  /* Link preview (simple)**/
+  .preview{margin-top:.5rem; border:1px solid var(--border-app); border-radius:8px; padding:.6rem; background:var(--border-app); font-size:clamp(.8rem,1.8vw,.9rem); color:var(--text-secondary);}
+  .preview b{display:block; color:var(--text-primary);}
+
+  /* Toast */
+  .toast{position:fixed; bottom:16px; left:50%; transform:translateX(-50%); background:var(--text-primary); color:var(--bg-app); padding:.6rem .9rem; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.3); z-index:50; opacity:0; pointer-events:none; transition:opacity .2s}
+  .toast.show{opacity:1}
+
+  /* Sources Drawer */
+  .sources-drawer{position:fixed; inset:auto 0 0 0; max-height:70vh; transform:translateY(105%); transition:.25s transform ease; background:var(--bg-app); color:var(--text-primary); border-top:1px solid var(--border-app); box-shadow:0 -18px 40px rgba(0,0,0,.15); z-index:100; overflow-y:auto; padding-bottom:1rem}
+  .sources-drawer.open{ transform:translateY(0) }
+  .sources-drawer header{display:flex; justify-content:space-between; align-items:center; padding:.8rem 1rem; border-bottom:1px solid var(--border-app); background:var(--border-app);}
+  .sources-drawer header h3{margin:0; font-size:clamp(1.1rem,3vw,1.2rem); color:var(--text-primary);}
+  .sources-drawer .source-item{padding:.6rem 1rem; border-bottom:1px solid var(--border-app); font-size:clamp(.8rem,1.8vw,.9rem); color:var(--text-primary);}
+    .sources-drawer .source-item a{color:var(--brand-color-accent, var(--accent-fallback)); text-decoration:underline}
+  .sources-drawer .source-item:last-child{border-bottom:none}
+  .sources-drawer .source-item span{font-weight:600; margin-right:.5em}
+  .sources-drawer .close-btn{background:var(--border-app); color:var(--text-primary); border:1px solid var(--border-app); padding:.5rem .8rem; border-radius:8px; cursor:pointer; font-size:clamp(.8rem,1.8vw,.9rem);}
+  .sources-drawer .source-item.highlight{background-color:rgba(0,123,255,0.1); transition:background-color .3s ease-in-out;}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav wrap">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"></div>
+      <div class="brand-type">MFSS Global Hub</div> <!-- Updated Brand Type -->
+    </div>
+    <nav class="tabs" aria-label="Jump to platform">
+      <a class="tab" href="#sora">Sora Node</a>
+      <a class="tab" href="#meta">Meta Node</a>
+      <a class="tab" href="#nano">Nano Node</a>
+      <a class="tab" href="#midj">MidJ Node</a>
+    </nav>
+    <button id="audio-toggle" class="btn" style="padding:.5rem .8rem; font-size:clamp(.8rem,1.8vw,.9rem);">🔊 Play Ambiance</button>
+  </div>
+</header>
+
+<main>
+  <!-- MP3 Audio Element -->
+  <audio id="background-ambiance" loop preload="auto">
+    <!-- Place your MP3 file here. Recommended path: assets/audio/mfss-ambiance.mp3 -->
+    <source src="assets/audio/mfss-ambiance.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- ===================== SORA NODE (Lay's Potato Chips vs. AI Video Feeds (Sora)) ===================== -->
+  <section id="sora" class="platform-section" aria-labelledby="sora-h">
+    <div class="wrap hero">
+      <div>
+        <h1 id="sora-h">Sora Node: Lay’s Chips vs. AI Video Feeds</h1>
+        <p class="lede">Examines **autopoiesis** and 'safe vs unsafe' code. Lay’s evolves via production–consumption–feedback, Sora via retraining on user prompts. Both face risks from mislabeled output, visible or hidden. <span class="cite-ref" data-ref-key="Analogy_Sora_Align">[ref]</span></p>
+        <div class="cta-row">
+          <a class="btn" href="#sora-feed">Discuss Analogy</a>
+          <span class="chip-action">#Autopoiesis #RiskVisibility</span>
+          <button class="btn facts-toggle" data-target="sora-facts" aria-expanded="false">View Analogy Examined</button>
+        </div>
+      </div>
+      <div>
+        <!-- Mascot SVG: Layla Chip Bag -->
+        <svg class="mascot" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sora Node Mascot">
+          <defs>
+            <linearGradient id="ly1" x1="0" x2="1">
+              <stop offset="0" stop-color="var(--brand-color-light)"/>
+              <stop offset="1" stop-color="var(--brand-color-dark)"/>
+            </linearGradient>
+          </defs>
+          <rect width="100%" height="100%" fill="transparent"/>
+          <g transform="translate(120,40)">
+            <ellipse cx="160" cy="310" rx="160" ry="28" fill="#000" opacity=".08"/>
+            <rect x="60" y="80" width="200" height="220" rx="24" fill="url(#ly1)" stroke="var(--brand-color-accent)" stroke-width="6" class="chip-bag-main"/>
+            <rect x="60" y="80" width="200" height="56" rx="24" fill="var(--bg-app)" opacity=".9" class="chip-bag-top"/>
+            <text x="160" y="118" text-anchor="middle" font-family="Source Sans 3" font-size="24" font-weight="800" fill="var(--brand-color-accent)" class="chip-text">SORA</text>
+            <g fill="#fff6a0" stroke="#d49b00" stroke-width="4" class="potato-chip">
+              <circle cx="120" cy="200" r="22"/>
+              <circle cx="160" cy="220" r="22"/>
+              <circle cx="200" cy="200" r="22"/>
+            </g>
+            <g class="face-features">
+              <circle cx="120" cy="150" r="8" fill="var(--brand-color-accent)"/>
+              <circle cx="200" cy="150" r="8" fill="var(--brand-color-accent)"/>
+              <path d="M130 170 q30 18 60 0" fill="none" stroke="var(--brand-color-accent)" stroke-width="6" stroke-linecap="round"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="wrap shell" id="sora-feed">
+      <aside class="left">
+        <div class="widget">
+          <h3>Trending Analogy Points</h3>
+          <ul class="trends" id="sora-trends"></ul>
+        </div>
+      </aside>
+
+      <div>
+        <div class="stories-carousel" id="sora-stories"></div>
+        <div class="facts-card" id="sora-facts"></div>
+        <div class="composer" data-scope="sora">
+          <textarea placeholder="Share your analysis on Lay's/Sora analogy… (paste references)"></textarea>
+          <button class="btn" type="button">Submit Observation</button>
+        </div>
+        <div class="feed" role="feed"></div>
+      </div>
+
+      <aside class="right">
+        <div class="widget">
+          <h3>References Cited</h3>
+          <div class="micro">Click any `[ref]` link to open the global sources panel for details.</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===================== META NODE (McDonald’s Fries vs. Social Media Feeds (Meta/Facebook)) ===================== -->
+  <section id="meta" class="platform-section" aria-labelledby="meta-h">
+    <div class="wrap hero">
+      <div>
+        <h1 id="meta-h">Meta Node: McDonald’s Fries vs. Social Feeds</h1>
+        <p class="lede">Compares **scale and uniformity** driving global dominance. McDonald’s fries and Meta’s feeds both use repetition to spur action. Sameness, however, can backfire, causing fatigue or perceived manipulation. <span class="cite-ref" data-ref-key="Analogy_Meta_Align">[ref]</span></p>
+        <div class="cta-row">
+          <a class="btn" href="#meta-feed">Analyze Trends</a>
+          <span class="chip-action">#ScaleUniformity #CulturalRisk</span>
+          <button class="btn facts-toggle" data-target="meta-facts" aria-expanded="false">View Analogy Examined</button>
+        </div>
+      </div>
+      <div>
+        <!-- Mascot SVG: Clown -->
+        <svg class="mascot" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Meta Node Mascot">
+          <rect width="100%" height="100%" fill="transparent"/>
+          <g transform="translate(80,40)">
+            <ellipse cx="180" cy="310" rx="180" ry="32" fill="#000" opacity=".08"/>
+            <circle cx="180" cy="150" r="70" fill="#ffd1dc" stroke="var(--brand-color-accent)" stroke-width="6" class="clown-face"/>
+            <rect x="120" y="220" width="120" height="80" rx="18" fill="var(--brand-color-light)" stroke="var(--brand-color-accent)" stroke-width="6" class="fry-box"/>
+            <g fill="var(--brand-color-accent)" class="fries">
+              <rect x="125" y="230" width="20" height="50" rx="6"/>
+              <rect x="155" y="230" width="20" height="50" rx="6"/>
+              <rect x="185" y="230" width="20" height="50" rx="6"/>
+            </g>
+            <g class="face-details">
+              <circle cx="155" cy="135" r="10" fill="#000"/>
+              <circle cx="205" cy="135" r="10" fill="#000"/>
+              <rect x="150" y="115" width="60" height="8" rx="4" fill="#000"/>
+              <path d="M150 175 q30 20 60 0" fill="none" stroke="var(--brand-color-accent)" stroke-width="6"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="wrap shell" id="meta-feed">
+      <aside class="left">
+        <div class="widget">
+          <h3>Trending Analogy Points</h3>
+          <ul class="trends" id="meta-trends"></ul>
+        </div>
+      </aside>
+
+      <div>
+        <div class="stories-carousel" id="meta-stories"></div>
+        <div class="facts-card" id="meta-facts"></div>
+        <div class="composer" data-scope="meta">
+          <textarea placeholder="Share your analysis on McDonald's/Meta analogy… (paste references)"></textarea>
+          <button class="btn" type="button">Submit Observation</button>
+        </div>
+        <div class="feed" role="feed"></div>
+      </div>
+
+      <aside class="right">
+        <div class="widget">
+          <h3>References Cited</h3>
+          <div class="micro">Click any `[ref]` link to open the global sources panel for details.</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===================== NANO NODE (Chiquita Bananas vs. Google’s AI Services) ===================== -->
+  <section id="nano" class="platform-section" aria-labelledby="nano-h">
+    <div class="wrap hero">
+      <div>
+        <h1 id="nano-h">Nano Node: Chiquita Bananas vs. Google AI</h1>
+        <p class="lede">Compares **invisible infrastructure** and reliable supply. Both are background staples, unnoticed until they falter. The breakpoint is physical vs. digital scale and commodification. <span class="cite-ref" data-ref-key="Analogy_Chiquita_Align">[ref]</span></p>
+        <div class="cta-row">
+          <a class="btn" href="#nano-feed">Analyze Infrastructure</a>
+          <span class="chip-action">#InvisibleInfrastructure #DigitalMonopoly</span>
+          <button class="btn facts-toggle" data-target="nano-facts" aria-expanded="false">View Analogy Examined</button>
+        </div>
+      </div>
+      <div>
+        <!-- Mascot SVG: Banana Lady -->
+        <svg class="mascot" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nano Node Mascot">
+          <defs>
+            <linearGradient id="bn1" x1="0" x2="1">
+              <stop offset="0" stop-color="#fef176"/>
+              <stop offset="1" stop-color="#fbbc05"/>
+            </linearGradient>
+          </defs>
+          <rect width="100%" height="100%" fill="transparent"/>
+          <g transform="translate(80,40)">
+            <ellipse cx="180" cy="300" rx="180" ry="32" fill="#000" opacity=".08"/>
+            <g>
+              <circle cx="180" cy="170" r="70" fill="#ffe9b9" stroke="var(--brand-color-light)" stroke-width="6" class="face-outline"/>
+              <path d="M100 240 q80 60 160 0 q-10 80 -80 90 q-70 -10 -80 -90z" fill="var(--brand-color-dark)"/>
+              <!-- Hat features -->
+              <g transform="translate(130,90) rotate(-8)">
+                <path d="M0 0 q40 -25 80 0 q-10 22 -40 28 q-35 -4 -40 -28z" fill="var(--brand-color-accent)" class="hat-fruit"/>
+                <path d="M20 -6 c40 -50 140 40 70 50" fill="none" stroke="#fbbc05" stroke-width="10" stroke-linecap="round" class="hat-stripe1"/>
+                <path d="M65 -10 c35 -40 120 30 60 40" fill="none" stroke="var(--brand-color-dark)" stroke-width="10" stroke-linecap="round" class="hat-stripe2"/>
+              </g>
+              <!-- Basket features -->
+              <rect x="90" y="200" width="180" height="80" rx="18" fill="url(#bn1)" stroke="var(--brand-color-light)" stroke-width="6" class="basket-body"/>
+              <g fill="#fbbc05" stroke="#de9e00" stroke-width="4" class="basket-bananas">
+                <path d="M110 210 q30 -30 60 0 q-15 30 -60 0z"/>
+                <path d="M150 220 q30 -30 60 0 q-15 30 -60 0z"/>
+                <path d="M190 215 q30 -30 60 0 q-15 30 -60 0z"/>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="wrap shell" id="nano-feed">
+      <aside class="left">
+        <div class="widget">
+          <h3>Trending Analogy Points</h3>
+          <ul class="trends" id="nano-trends"></ul>
+        </div>
+      </aside>
+
+      <div>
+        <div class="stories-carousel" id="nano-stories"></div>
+        <div class="facts-card" id="nano-facts"></div>
+        <div class="composer" data-scope="nano">
+          <textarea placeholder="Share your analysis on Chiquita/Google analogy… (paste references)"></textarea>
+          <button class="btn" type="button">Submit Observation</button>
+        </div>
+        <div class="feed" role="feed"></div>
+      </div>
+
+      <aside class="right">
+        <div class="widget">
+          <h3>References Cited</h3>
+          <div class="micro">Click any `[ref]` link to open the global sources panel for details.</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===================== MIDJ NODE (Waffle House Diners vs. MidJourney AI Community) ===================== -->
+  <section id="midj" class="platform-section" aria-labelledby="midj-h">
+    <div class="wrap hero">
+      <div>
+        <h1 id="midj-h">MidJ Node: Waffle House vs. MidJourney AI</h1>
+        <p class="lede">Examines **ritual resilience** and open/closed code. Waffle House's diner culture and MidJourney's prompt-crafting create shared continuity, but for different stakes: survival vs. creativity. <span class="cite-ref" data-ref-key="Analogy_MidJ_Align">[ref]</span></p>
+        <div class="cta-row">
+          <a class="btn" href="#midj-feed">Analyze Resilience</a>
+          <span class="chip-action">#RitualResilience #CulturalResilience</span>
+          <button class="btn facts-toggle" data-target="midj-facts" aria-expanded="false">View Analogy Examined</button>
+        </div>
+      </div>
+      <div>
+        <!-- Mascot SVG: Arti Potato -->
+        <svg class="mascot" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MidJ Node Mascot">
+          <rect width="100%" height="100%" fill="transparent"/>
+          <g transform="translate(80,40)">
+            <ellipse cx="180" cy="310" rx="180" ry="28" fill="#27f4ff" opacity=".09"/>
+            <ellipse cx="180" cy="200" rx="90" ry="120" fill="#a3724c" stroke="var(--brand-color-light)" stroke-width="6" class="potato-body"/>
+            <!-- Eyes -->
+            <g class="eyes">
+              <circle cx="160" cy="170" r="10" fill="var(--brand-color-accent)"/>
+              <circle cx="200" cy="170" r="10" fill="var(--brand-color-secondary-accent)"/>
+            </g>
+            <!-- Accessories -->
+            <rect x="120" y="120" width="120" height="10" rx="5" fill="var(--brand-color-light)" class="accessories-main"/>
+            <path d="M180 90 l30 -10 l20 20 l-10 10 z" fill="var(--brand-color-accent)" class="accessories-accent"/>
+            <rect x="135" y="230" width="90" height="16" rx="8" fill="var(--brand-color-accent)" class="accessories-accent"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="wrap shell" id="midj-feed">
+      <aside class="left">
+        <div class="widget">
+          <h3>Trending Analogy Points</h3>
+          <ul class="trends" id="midj-trends"></ul>
+        </div>
+      </aside>
+
+      <div>
+        <div class="stories-carousel" id="midj-stories"></div>
+        <div class="facts-card" id="midj-facts"></div>
+        <div class="composer" data-scope="midj">
+          <textarea placeholder="Share your analysis on Waffle House/MidJourney analogy… (paste references)"></textarea>
+          <button class="btn" type="button">Submit Observation</button>
+        </div>
+        <div class="feed" role="feed"></div>
+      </div>
+
+      <aside class="right">
+        <div class="widget">
+          <h3>References Cited</h3>
+          <div class="micro">Click any `[ref]` link to open the global sources panel for details.</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap micro">© <span id="y"></span> MFSS Global Hub. A live analytical feed for Meta-Foraging Society comparative risk topology.</div> <!-- Updated Footer -->
+</footer>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<!-- Sources Drawer -->
+<div class="sources-drawer" id="sources-drawer" aria-label="All referenced sources" role="dialog">
+  <header>
+    <h3>All Referenced Sources</h3>
+    <button class="close-btn" id="close-sources-drawer">Close</button>
+  </header>
+  <div id="sources-list"></div>
+</div>
+
+<script>
+(function(){
+  // Year + tab highlight
+  document.getElementById('y').textContent = new Date().getFullYear();
+  function highlightGlobalNav(){
+    const hash = location.hash || '#sora';
+    document.querySelectorAll('.tabs .tab').forEach(a => {
+      a.setAttribute('aria-current', a.getAttribute('href')===hash ? 'page' : 'false');
+    });
+    if (hash) {
+      document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+  addEventListener('hashchange', highlightGlobalNav);
+  highlightGlobalNav();
+
+  // --- APP DATA: All Sources from "Meta-Foraging Society: Snack–AI Analogies Examined" ---
+  const APP_SOURCES = {
+    // Sources from the "Snack-AI Analogies Examined" document, with their full URLs.
+    fda_lays_recall: { title: "Frito-Lay Issues Limited Recall on Undeclared Milk in Lay’s Classic Potato Chips Distributed in Oregon and Washington | FDA", url: "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/frito-lay-issues-limited-recall-undeclared-milk-lays-classic-potato-chips-distributed-oregon-and" },
+    wired_sora_bias: { title: "OpenAI’s Sora Is Plagued by Sexist, Racist, and Ableist Biases | WIRED", url: "https://www.wired.com/story/openai-sora-video-generator-bias/" },
+    fox10_lamb_weston: { title: "Major McDonald's french fry supplier closes plant in Washington, slashes jobs as inflation continues | FOX 10 Phoenix", url: "https://www.fox10phoenix.com/news/major-mcdonalds-french-fry-supplier-closes-plant-washington-slashes-jobs-inflation-continues" },
+    economictimes_ai_hallucinations: { title: "'AI hallucinations' cause real-world disaster for family-run business: Stop trusting AI search results blindly - The Economic Times", url: "https://economictimes.indiatimes.com/magazines/panache/ai-hallucinations-cause-real-world-disaster-for-family-run-business-stop-trusting-ai-search-results-blindly/articleshow/123505756.cms?from=mdr" },
+    verge_facebook_teens: { title: "Inside Facebook’s struggle to keep young people | The Verge", url: "https://www.theverge.com/22743744/facebook-teen-usage-decline-frances-haugen-leaks" },
+    guardian_feed_saturation: { title: "'Parents killed it': why Facebook is losing its teenage users | Facebook | The Guardian", url: "https://www.theguardian.com/technology/2018/feb/16/parents-killed-it-facebook-losing-teenage-users" },
+    time_banana_climate: { title: "Climate Change is Coming for Your Bananas | TIME", url: "https://time.com/7310462/banana-supply-climate-change/" },
+    statcounter_google_search: { title: "Search Engine Market Share Worldwide | Statcounter Global Stats", url: "https://gs.statcounter.com/search-engine-market-share" },
+    kktv_google_cloud_outage: { title: "Massive Google Cloud outage disrupts popular internet services | KKTV", url: "https://www.kktv.com/2025/06/12/massive-google-cloud-outage-disrupts-popular-internet-services/" },
+    wikipedia_waffle_house_index: { title: "Waffle House Index - Wikipedia", url: "https://en.wikipedia.org/wiki/Waffle_House_Index" },
+    wafflehouse_storm_fury: { title: "How to Measure a Storm's Fury One Breakfast at a Time - Waffle House", url: "https://www.wafflehouse.com/how-to-measure-a-storms-fury-one-breakfast-at-a-time/" },
+    yahoo_midjourney_lawsuits: { title: "Artists Accuse Midjourney And Other AI Firms Of Unauthorized Use ... | Yahoo Finance", url: "https://finance.yahoo.com/news/4-700-artist-ai-controversy-182916995.html" },
+    newsweek_mcd_fries: { title: "McDonald’s Has a Problem With Its Fries - Newsweek", url: "https://www.newsweek.com/mcdonalds-problem-french-fries-supplier-lamb-weston-1967626" },
+  };
+
+  // --- PLATFORM_ANALOGIES structure to hold the analytical content ---
+  const PLATFORM_ANALOGIES = {
+    sora: {
+      title: "Lay’s Potato Chips vs. AI Video Feeds (Sora)",
+      sections: [
+        {
+          heading: "Alignment (Autopoiesis; 'safe vs unsafe' code)",
+          items: [
+            { text: "Both systems live on iterated cycles. Lay’s evolves through production–consumption–feedback (new flavors, improved recipes), while an AI video feed like OpenAI’s Sora continually retrains on user prompts and behavior. Each side has a simple binary code of Safe/Unsafe – Lay’s labels products as recalled/safe, and AI classifies outputs as factual or hallucinatory.", quote: "Each uses simple prompts to spur action: coupons and limited-time deals at McDonald’s parallel push notifications and algorithmic “nudges” on social platforms. There’s even a parallel lifecycle: potatoes→french fries→customer demand mirrors user scroll→algorithmic boost→continued engagement.", refs: [] },
+            { text: "A December 2024 FDA Class I recall of Lay’s Classic chips (undeclared milk allergen) publicly announced a “serious or life‑threatening allergic” risk.", refs: ["fda_lays_recall"] },
+            { text: "Similarly, the tech press has spotlighted Sora’s egregious biases (e.g. sexist or racist video outputs) and “hallucinations” – false-but-plausible clips that can erode trust.", quote: "Wired found Sora videos systematically reinforce stereotypes, akin to mislabelled chips in a product line.", refs: ["wired_sora_bias"] }
+          ]
+        },
+        {
+          heading: "Breakpoint (Material vs. digital; risk visibility)",
+          items: [
+            { text: "Lay’s is a physical supply chain subject to farming, ingredients and transport constraints. Sora is purely digital, limited by data and attention.", quote: "A broken Lay’s supply chain (bad harvest, recall) leads to empty shelves or visible withdrawal. Indeed, Lamb Weston (Lay’s fry supplier) is facing shrinking demand and even plant closures due to inflation, leaving 4% of its workforce cut.", refs: ["fox10_lamb_weston"] },
+            { text: "In contrast, Sora’s problems are invisible until they ignite – AI failures are hidden until exploited.", quote: "For example, Google’s “AI hallucinations” in search have quietly misled customers (a pizzeria had to warn patrons that AI-generated specials were bogus), whereas a Lay’s recall is publicly announced. AI trust is often rebuilt with audits or transparency (model “system cards”), whereas Lay’s rebuilds trust via press releases and visible recalls.", refs: ["economictimes_ai_hallucinations"] }
+          ]
+        },
+        {
+          heading: "Real-world probes",
+          items: [
+            { text: "Lay’s recalls are rare but potent shocks – e.g., the 2024 milk-allergen recall immediately triggered public alerts. By contrast, AI hallucinations (as in the Stefanina’s Pizzeria case) cause confusion quietly.", refs: ["fda_lays_recall", "economictimes_ai_hallucinations"] },
+            { text: "One might ask: which recovers faster? Lay’s swiftly pulls product and informs consumers; AI only fixes issues when exposed, often after harm.", refs: [] },
+            { text: "Auditing frameworks (bias checks, transparency reports) serve as “trust probes” for AI, much like third-party inspections for food safety.", refs: [] }
+          ]
+        }
+      ]
+    },
+    meta: {
+      title: "McDonald’s Fries vs. Social Media Feeds (Meta/Facebook)",
+      sections: [
+        {
+          heading: "Alignment (Scale and Uniformity; Promotion vs. Notification)",
+          items: [
+            { text: "Both rely on standardized repetition to dominate. McDonald’s uniform golden fries are produced endlessly from potato farms to fryers, just as Meta’s feeds endlessly algorithmize user content for maximum engagement.", quote: "Each uses simple prompts to spur action: coupons and limited-time deals at McDonald’s parallel push notifications and algorithmic “nudges” on social platforms. There’s even a parallel lifecycle: potatoes→french fries→customer demand mirrors user scroll→algorithmic boost→continued engagement.", refs: [] }
+          ]
+        },
+        {
+          heading: "Breakpoint (Supply vs. Cultural risk; variety vs. sameness)",
+          items: [
+            { text: "Fries are ultimately physical goods; if a major supplier falters (plantation disease or factory closure), people notice shortages. Meta’s feeds are cultural products: the risk is not “running out” of content but losing user interest.", quote: "Lamb Weston’s recent announcement (closing a Washington plant, layoffs) explicitly blamed “soft” frozen potato demand. By contrast, Meta’s crisis is demographic: internal documents reveal Facebook losing teens fast – US teen user numbers fell 13% (2019–2021) and were projected to drop 45% in two years.", refs: ["fox10_lamb_weston", "verge_facebook_teens"] },
+            { text: "Here uniformity cuts two ways. McDonald’s brands uniform fries as comfort-food consistency (a strength), but Facebook’s uniform feed (ad‐saturated, clickbait-laden) became a liability.", quote: "As the Guardian noted, flooding users’ timelines with ads may please investors but is “being unfriended by its user base.” In other words, sameness sold as reliability in snacks can be perceived as manipulation or boredom in social media.", refs: ["guardian_feed_saturation"] }
+          ]
+        },
+        {
+          heading: "Real-world probes",
+          items: [
+            { text: "Consumer complaints highlight the difference. McDonald’s menu innovations often backfire (“Kroc returns?”) or customers grumble about portion downsizing, whereas Facebook users increasingly cite fatigue and privacy boredom.", quote: "The “uniformity probe” asks: who complains about sameness? In social media studies, a Pew survey even showed 61% of users taking breaks due to overload (echoed by Facebook’s own findings). On the supply side, any disruption triggers concern: McDonald’s responded to a fry sales slump with a $5 meal deal (small fries) to boost traffic.", refs: ["verge_facebook_teens", "guardian_feed_saturation", "newsweek_mcd_fries"] },
+            { text: "Metaphorically, a shortage of fries forces menu changes; a “shortage” of engagement forces platform tweaks (Meta downgraded publisher posts to show more “friend” content).", refs: [] }
+          ]
+        }
+      ]
+    },
+    nano: {
+      title: "Chiquita Bananas vs. Google’s AI Services",
+      sections: [
+        {
+          heading: "Alignment (Invisible Infrastructure; Reliable vs. Unreliable supply)",
+          items: [
+            { text: "Both are background staples: millions consume bananas daily, and billions rely on Google’s search/AI quietly. Neither is often noticed until it falters.", quote: "Bananas travel from farms to supermarkets, then are replanted on plantations – much like Google’s index is built on harvested data, served in queries, and used to retrain models. The common code is Reliable/Unreliable supply. Shoppers expect bananas always on the shelf; users expect Google answers always in milliseconds.", refs: [] }
+          ]
+        },
+        {
+          heading: "Breakpoint (Physical limits vs. Digital scale; commodity vs. monopoly)",
+          items: [
+            { text: "Bananas face biophysical constraints: land, climate, and disease. Climate change is already shrinking banana-growing regions – one study predicts a 60% loss of suitable farmland in Latin America/Caribbean.", refs: ["time_banana_climate"] },
+            { text: "In contrast, Google’s AI services scale horizontally by adding servers; there’s no physical “land” limit. Also, bananas are a largely undifferentiated commodity (prices can spike but dozens of brands compete). Google is virtually hegemonic: it holds ~90% of global search market share and its cloud services are critical infrastructure.", refs: ["statcounter_google_search"] },
+            { text: "In essence, a banana shortage means higher prices and slight behavior change, but a major Google outage (e.g. a 2025 Google Cloud failure) can bring global platforms to their knees.", refs: ["kktv_google_cloud_outage"] }
+          ]
+        },
+        {
+          heading: "Real-world probes",
+          items: [
+            { text: "Consider absences: What if bananas vanished from shelves? Consumers grumble about price inflation, but supermarkets replace them with other fruits. What if Google goes down? Services from Spotify to Discord hiccup, showing how intolerable a Google outage is compared to a temporary fruit shortfall.", refs: ["kktv_google_cloud_outage"] },
+            { text: "Another angle: “commodity probe.” Supermarkets commodify bananas aggressively (price wars, endless variety packs), but AI tools like Google are anything but interchangeable – they are near-monopolies.", quote: "New AI “search” competitors struggle to replicate Google’s ubiquity. This asymmetry means Google’s “failures” (bias in answers or downtime) carry outsized consequences, unlike a fruit-brand blip that usually just shifts consumer choice.", refs: ["statcounter_google_search"] }
+          ]
+        }
+      ]
+    },
+    midj: {
+      title: "Waffle House Diners vs. MidJourney AI Community",
+      sections: [
+        {
+          heading: "Alignment (Ritual Resilience; Open vs. Closed code)",
+          items: [
+            { text: "Both thrive on ritual and continuity, but in different realms. Waffle House’s hashbrown lingo and 24/7 diner culture reproduce a sense of survival and normalcy (famously, the “Waffle House Index” tracks storms by store closures).", refs: ["wikipedia_waffle_house_index", "wafflehouse_storm_fury"] },
+            { text: "MidJourney’s community has its own ritual: prompt-crafting (e.g. “/imagine” commands) and shared “prompt lingo” that perpetuate a collaborative creative culture. The code is Open/Closed – Waffle Houses declare “Full menu / Limited menu / Closed” as a gauge. MidJourney might similarly be “accessible / limited” if the Discord server faces technical limits or moderation (Easter eggs like ephemeral images add a closed dimension).", refs: ["wikipedia_waffle_house_index", "wafflehouse_storm_fury"] }
+          ]
+        },
+        {
+          heading: "Breakpoint (Physical vs. social environment; survival vs. creativity)",
+          items: [
+            { text: "Waffle House’s resilience is infrastructure-based (backup generators, stocked supplies) and tied to geography – its continuity is a literal lifeline in disasters.", quote: "MidJourney’s resilience is cultural – it depends on internet community engagement and discourse, not storm shelters. A branch closed by a hurricane signals danger; a MidJourney bot down (e.g. due to server issues or even artist protests) only disrupts a creative outlet.", refs: ["wikipedia_waffle_house_index"] },
+            { text: "Functionally, Waffle House rituals are about basic needs (food and safety), whereas MidJourney rituals are about meaning-making and art. The stakes differ: people “trust” Waffle House to feed them in crisis (a powerful communal myth), whereas they trust MidJourney for inspiration or novelty.", refs: ["wafflehouse_storm_fury"] }
+          ]
+        },
+        {
+          heading: "Real-world probes",
+          items: [
+            { text: "FEMA’s use of Waffle Houses as a storm gauge shows how deeply the continuity ritual is trusted as a public index. In contrast, there is no formal “MidJourney Index,” but the AI art scene does note when platforms falter.", quote: "For example, in 2022 & 2024 major AI art lawsuits (copyright claims by artists) threatened MidJourney’s operations, akin to “hurricanes” of controversy in the community.", refs: ["wafflehouse_storm_fury", "yahoo_midjourney_lawsuits"] },
+            { text: "A ritual probe might ask: do fans rely on these rituals in the same way? Waffle House’s role as a post-storm safe haven is practical (people need it to eat), whereas MidJourney’s role is emotional/creative (users want it for inspiration).", quote: "Both are “cult-like” in that their devoted users interpret continuity (open diners, working bots) as signs that “all is well” in their world, but the nature of that well-being differs.", refs: [] }
+          ]
+        }
+      ]
+    }
+  };
+
+  // --- Seed posts (using Contrastive Headlines and key MFSS statements) ---
+  const initialSeedPosts = {
+    sora: [
+      "When AI Limits Your Output: 'Sora Has Introduced Small Fries Only' Policy. Is this a managed decline strategy or simply unchecked bias? 🤔 #AIHallucinations #SoraBias",
+      "Wired found Sora videos systematically reinforce stereotypes. Is this akin to mislabelled chips in a product line? How do we audit 'cultural ingredients'? [ref: wired_sora_bias]",
+      "Lay’s Classic recall: undeclared milk allergen, a serious life-threatening risk. What hidden biases or 'allergens' are lurking in our AI-generated content? [ref: fda_lays_recall]",
+    ],
+    meta: [
+      "Social Media Wars: Meta’s Safety Measures Now Graded on the United Fruit Morality Index. Are we externalizing behavioral harm as a cost of engagement? #GovernanceDebt #PlatformEthics",
+      "Facebook losing teens fast, projected 45% drop in two two years! Uniform feeds may offer consistency for snacks, but they breed boredom and fatigue in social media. [ref: verge_facebook_teens]",
+      "McDonald's fries slump leads to a $5 meal deal. Meta's engagement slump leads to downgrading publisher posts. Different crises, similar tactics to 'boost traffic'. [ref: newsweek_mcd_fries]",
+    ],
+    nano: [
+      "What if Google Cloud went down in 2025? Services from Spotify to Discord would hiccup. A banana shortage is an inconvenience; a Google outage is an infrastructural crisis. [ref: kktv_google_cloud_outage]",
+      "Climate change shrinking banana-growing regions by 60% in LatAm. Meanwhile, Google's AI scales horizontally. Physical limits versus digital infinity. #ClimateRisk #DigitalMonopoly [ref: time_banana_climate]",
+      "Supermarkets aggressively commodify bananas. Google AI is a near-monopoly. This asymmetry means Google's 'failures' carry outsized consequences. [ref: statcounter_google_search]",
+    ],
+    midj: [
+      "MidJourney Is Down, But FEMA Isn't Concerned: The Waffle House Index Remains Green. The paradox of digital fragility vs. physical resilience. #WaffleHouseIndex #DigitalResilience",
+      "Waffle House's #HashbrownLingo fosters community, a literal lifeline in disasters. MidJourney's #PromptCrafting builds creative culture. Both rely on ritual, but for radically different stakes. [ref: wikipedia_waffle_house_index]",
+      "AI art lawsuits against MidJourney are like hurricanes of controversy. How does a creative community rebuild trust and operations compared to a physical diner? [ref: yahoo_midjourney_lawsuits]",
+    ]
+  };
+
+  // --- Trends per scope (MFSS terminology) ---
+  const trends = {
+    sora:["#Autopoiesis","#RiskVisibility","#ContentIntegrity","#AIHallucinations"],
+    meta:["#ScaleUniformity","#CulturalRisk","#UserFatigue","#PlatformManipulation"],
+    nano:["#InvisibleInfrastructure","#DigitalMonopoly","#PhysicalLimits","#CommodityProbe"],
+    midj:["#RitualResilience","#CulturalRisk","#SurvivalVsCreativity","#WaffleHouseIndex"],
+  };
+
+  // --- Stories Data (MFSS Analysts/Entities) ---
+  const stories = {
+    sora: [
+      { name: "Dr. A.I. Ethics", avatar: "https://via.placeholder.com/60/FFC900/E21C2A?text=DE", url: "#" },
+      { name: "MFSS_Policy", avatar: "https://via.placeholder.com/60/FFB300/fff?text=MP", url: "#" },
+      { name: "ContentGuard_AI", avatar: "https://via.placeholder.com/60/E21C2A/fff?text=CG", url: "#" },
+      { name: "DataAudit_Unit", avatar: "https://via.placeholder.com/60/FFC900/2b0002?text=DU", url: "#" },
+      { name: "GenAI_Analyst", avatar: "https://via.placeholder.com/60/FFB300/E21C2A?text=GA", url: "#" }
+    ],
+    meta: [
+      { name: "Prof. S.Erosion", avatar: "https://via.placeholder.com/60/FFC000/DA291C?text=PS", url: "#" },
+      { name: "YouthSafety_Org", avatar: "https://via.placeholder.com/60/DA291C/FFD34F?text=YS", url: "#" },
+      { name: "MFSS_GovWatch", avatar: "https://via.placeholder.com/60/FFC000/333?text=GW", url: "#" },
+      { name: "Behavioral_Econ", avatar: "https://via.placeholder.com/60/DA291C/fff?text=BE", url: "#" },
+      { name: "PlatformMetrics", avatar: "https://via.placeholder.com/60/FFD34F/DA291C?text=PM", url: "#" }
+    ],
+    nano: [
+      { name: "MFSS_Trade_Unit", avatar: "https://via.placeholder.com/60/4285F4/fff?text=TU", url: "#" },
+      { name: "EconConcentration", avatar: "https://via.placeholder.com/60/34A853/fff?text=EC", url: "#" },
+      { name: "DigitalOligopsony", avatar: "https://via.placeholder.com/60/EA4335/fff?text=DO", url: "#" },
+      { name: "InfrastructureMon", avatar: "https://via.placeholder.com/60/4285F4/fff?text=IM", url: "#" },
+      { name: "ResourceFlow_Lab", avatar: "https://via.placeholder.com/60/F7B229/fff?text=RL", url: "#" }
+    ],
+    midj: [
+      { name: "FEMA_Analyst", avatar: "https://via.placeholder.com/60/5333ed/fff?text=FA", url: "#" },
+      { name: "DOI_Standard_Comm", avatar: "https://via.placeholder.com/60/ff6ad5/fff?text=DS", url: "#" },
+      { name: "Resilience_Theory", avatar: "https://via.placeholder.com/60/8c7bff/fff?text=RT", url: "#" },
+      { name: "OpacityResearch", avatar: "https://via.placeholder.com/60/5333ed/ff6ad5?text=OR", url: "#" },
+      { name: "CrisisResponse_AI", avatar: "https://via.placeholder.com/60/ff6ad5/fff?text=CR", url: "#" }
+    ]
+  };
+
+  // --- Init per platform section ---
+  document.querySelectorAll('section.platform-section').forEach(platformSection => {
+    const scope = platformSection.id;
+    const composer = platformSection.querySelector(`.composer`);
+    const feed = platformSection.querySelector(`.feed`);
+    const factsCard = platformSection.querySelector(`.facts-card`);
+    const tUL = platformSection.querySelector(`.trends`);
+    const factsToggleButton = platformSection.querySelector(`.facts-toggle`);
+    const storiesCarousel = platformSection.querySelector('.stories-carousel');
+
+    // Populate stories carousel
+    if (storiesCarousel) {
+      renderStories(storiesCarousel, stories[scope] || [], scope);
+    }
+
+    // seed trends
+    if(tUL){ (trends[scope]||[]).forEach(t => {const li=document.createElement('li'); li.innerHTML = `<span class="trend">${escapeHTML(t)}</span>`; tUL.appendChild(li);}); }
+
+    // Render facts card as a special post
+    if(factsCard){
+      renderFactsContent(factsCard, PLATFORM_ANALOGIES[scope], scope);
+      // Initialize state for facts card visibility
+      factsCard.setAttribute('hidden', '');
+      factsCard.setAttribute('data-visible', 'false');
+      factsToggleButton.textContent = 'View Analogy Examined';
+      factsToggleButton.setAttribute('aria-expanded', 'false');
+    }
+
+    // Toggle facts card visibility
+    if (factsToggleButton) {
+      factsToggleButton.addEventListener('click', () => {
+        const isVisible = factsCard.getAttribute('data-visible') === 'true';
+        if (isVisible) {
+          factsCard.setAttribute('hidden', 'true');
+          factsCard.setAttribute('data-visible', 'false');
+          factsToggleButton.textContent = 'View Analogy Examined';
+          factsToggleButton.setAttribute('aria-expanded', 'false');
+        } else {
+          factsCard.removeAttribute('hidden');
+          factsCard.setAttribute('data-visible', 'true');
+          factsToggleButton.textContent = 'Hide Analogy Examined';
+          factsToggleButton.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+
+    // seed posts
+    (initialSeedPosts[scope]||[]).forEach(t => feed.appendChild(postEl(scope, t)));
+
+    // post handler
+    composer.querySelector('button').addEventListener('click', () => {
+      const ta = composer.querySelector('textarea');
+      const txt = (ta.value||'').trim();
+      if(!txt){ toast('Share your analysis first.'); return; }
+      const el = postEl(scope, txt, true);
+      feed.prepend(el); ta.value='';
+      savePost(scope, txt);
+      toast('Observation Submitted ✓');
+    });
+  });
+
+  // --- Persist posts per scope ---
+  const KEY = 'snackai.posts.v1';
+  function savePost(scope, txt){
+    const all = JSON.parse(localStorage.getItem(KEY)||'{}');
+    all[scope] = all[scope]||[];
+    all[scope].unshift({t:Date.now(), x:txt});
+    localStorage.setItem(KEY, JSON.stringify(all));
+  }
+  function loadPosts(){
+    const all = JSON.parse(localStorage.getItem(KEY)||'{}');
+    Object.entries(all).forEach(([scope, arr]) => {
+      const feed = document.querySelector(`#${scope} .feed`);
+      if(feed){ arr.forEach(p => feed.prepend(postEl(scope, p.x))); }
+    });
+  }
+  loadPosts();
+
+  // --- Render Helpers ---
+  function getAvatarHTML(scope, imageUrl = null) {
+    let avatarStyle = '';
+    if (imageUrl) {
+        avatarStyle = `background-image: url('${escapeHTML(imageUrl)}'); background-size: cover; background-position: center;`;
+    }
+    return `<div class="avatar" style="${avatarStyle}"></div>`;
+  }
+
+  function renderStories(carouselElement, storiesData, scope) {
+    storiesData.forEach(story => {
+      const storyItem = document.createElement('a');
+      storyItem.href = story.url;
+      storyItem.className = 'story-item';
+      const storyAvatarStyle = `background-image: url('${escapeHTML(story.avatar)}'); background-size: cover; background-position: center; border-color: var(--brand-color-accent, var(--accent-fallback));`;
+      storyItem.innerHTML = `
+        <div class="story-avatar" style="${storyAvatarStyle}"></div>
+        <span class="story-text">${escapeHTML(story.name)}</span>
+      `;
+      carouselElement.appendChild(storyItem);
+    });
+  }
+
+  function postEl(scope, text, mine){
+    const el = document.createElement('article');
+    el.className = 'post';
+    const links = extractLinks(text);
+    const bodyHTML = autoLink(escapeHTML(text));
+    el.innerHTML = `
+      <div class="post-header">${getAvatarHTML(scope)}<a href="#${scope}">@${scope}_${mine?'analyst':'research'}</a></div>
+      <p style="margin:.5rem 0 0">${bodyHTML}</p>
+      ${links.length? renderLinkChips(links):''}
+      ${links.length? renderPreview(links[0]):''}
+      <div style="margin-top:.6rem; display:flex; align-items:center; gap:.5rem; justify-content:space-between">
+        <div>
+          <button class="chip-action btn-like" aria-label="Acknowledge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+            Acknowledge</button>
+          <button class="chip-action btn-remix" aria-label="Re-Evaluate">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><polyline points="23 20 23 14 17 14"></polyline><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path></svg>
+            Re-Evaluate</button>
+          <button class="chip-action btn-bookmark" aria-label="Cite">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            Cite</button>
+        </div>
+        <div class="counts" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg> <b>${rand(3,120)}</b></span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><polyline points="23 20 23 14 17 14"></polyline><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path></svg> <b>${rand(0,42)}</b></span></div>
+      </div>`;
+
+    el.querySelectorAll('.link-chip').forEach(chip=>{
+      chip.addEventListener('click', ()=>{ window.open(chip.dataset.href,'_blank'); });
+    });
+
+    return el;
+  }
+
+  function renderLinkChips(links){
+    const linkIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>`;
+    return `<div style="margin-top:.5rem; display:flex; gap:.4rem; flex-wrap:wrap">${links.map(u=>`
+      <button class="link-chip" data-href="${u}">
+        ${linkIcon}<span>${escapeHTML(truncate(new URL(u).hostname || u, 24))}</span>
+      </button>`).join('')}</div>`;
+  }
+
+  function renderPreview(u){
+    const host = safeURL(u).host || 'link';
+    return `<div class="preview" role="note"><b>${escapeHTML(host)}</b><div style="opacity:.85">${escapeHTML(truncate(u, 88))}</div></div>`;
+  }
+
+  function renderFactsContent(box, analogyData, scope){
+    let html = `
+      <div class="post-header">
+        ${getAvatarHTML(scope)}
+        <a href="#${scope}-facts">@${scope}_analogy_exam</a>
+      </div>
+      <h4>Meta-Foraging Society: ${analogyData.title}</h4>`;
+    analogyData.sections.forEach(section => {
+      html += `<div class="fact-section"><h5>${escapeHTML(section.heading)}</h5>`;
+      section.items.forEach((item, itemIdx) => {
+        let refsHtml = '';
+        if (item.refs && item.refs.length > 0) {
+          refsHtml = item.refs.map(refKey => {
+            const sourceIndex = Object.keys(APP_SOURCES).indexOf(refKey) + 1;
+            return `<a href="#" class="ref-link" data-ref-key="${refKey}" data-ref-idx="${sourceIndex}">[ref ${sourceIndex}]</a>`;
+          }).join('');
+        }
+        html += `<div class="fact-item">
+          ${item.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}${refsHtml}
+          ${item.quote? `<blockquote class="quote">${item.quote}</blockquote>`: ''}
+        </div>`;
+      });
+      html += `</div>`;
+    });
+    box.innerHTML = html;
+  }
+
+  function extractLinks(text){
+    const urlRE = /(https?:\/\/[\w\-._~:/?#[\]@!$&'()*+,;=%]+)/gi;
+    return (text.match(urlRE)||[]).slice(0,4);
+  }
+  function autoLink(html){
+    const urlRE = /(https?:\/\/[\w\-._~:/?#[\]@!$&'()*+,;=%]+)/gi;
+    const refRE = /\[ref ([a-zA-Z0-9_]+)\]/g;
+    const boldRE = /\*\*(.*?)\*\*/g; // Regex for **bold**
+
+    let processedHtml = html.replace(urlRE, (m)=>`<a href="${m}" target="_blank" rel="noopener">${m}</a>`);
+    processedHtml = processedHtml.replace(boldRE, '<strong>$1</strong>'); // Process bolding here
+
+    processedHtml = processedHtml.replace(refRE, (match, refKey) => {
+      const sourceIndex = Object.keys(APP_SOURCES).indexOf(refKey) + 1;
+      if (sourceIndex > 0) {
+        return `<a href="#" class="ref-link" data-ref-key="${refKey}" data-ref-idx="${sourceIndex}">[ref ${sourceIndex}]</a>`;
+      }
+      return match;
+    });
+    return processedHtml;
+  }
+  function escapeHTML(s){
+    if (typeof s !== 'string') return s;
+    return s.replace(/[&<>"']/g, m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));
+  }
+  function truncate(s, n){ return s.length>n? s.slice(0,n-1)+'…': s; }
+  function safeURL(u){ try{ return new URL(u);}catch(e){ return {}; } }
+  function rand(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+
+  // Social actions (now academic-themed)
+  document.body.addEventListener('click', (e)=>{
+    const b = e.target.closest('.chip-action.btn-like, .chip-action.btn-remix, .chip-action.btn-bookmark');
+    if(!b) return;
+    const verb = b.classList.contains('btn-like')? 'Acknowledged ✓': b.classList.contains('btn-remix')? 'Re-Evaluated ↻': 'Cited 🔖';
+    toast(verb);
+  });
+
+  function toast(msg){
+    const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
+    clearTimeout(window.__t); window.__t = setTimeout(()=> t.classList.remove('show'), 1400);
+  }
+
+  // --- Sources Drawer Functionality ---
+  const sourcesDrawer = document.getElementById('sources-drawer');
+  const sourcesList = document.getElementById('sources-list');
+  document.getElementById('close-sources-drawer').addEventListener('click', () => {
+    sourcesDrawer.classList.remove('open');
+  });
+
+  // Populate sources drawer
+  function populateSourcesDrawer() {
+    sourcesList.innerHTML = '';
+    Object.entries(APP_SOURCES).forEach(([key, data], index) => {
+      const item = document.createElement('div');
+      item.className = 'source-item';
+      item.id = `source-${key}`;
+      item.innerHTML = `<span>[${index + 1}]</span> <strong>${escapeHTML(data.title)}</strong><br><a href="${escapeHTML(data.url)}" target="_blank" rel="noopener">${escapeHTML(data.url)}</a>`;
+      sourcesList.appendChild(item);
+    });
+  }
+  populateSourcesDrawer();
+
+  // Event listener for all [ref] links
+  document.addEventListener('click', (e) => {
+    const refLink = e.target.closest('.ref-link');
+    if (refLink) {
+      e.preventDefault();
+      const refKey = refLink.dataset.refKey;
+      sourcesDrawer.classList.add('open');
+      
+      setTimeout(() => {
+        const targetSource = document.getElementById(`source-${refKey}`);
+        if (targetSource) {
+          targetSource.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          targetSource.classList.add('highlight');
+          setTimeout(() => {
+            targetSource.classList.remove('highlight');
+          }, 1500);
+        }
+      }, 300);
+    }
+  });
+
+  // Event listener for username clicks
+  document.addEventListener('click', (e) => {
+    const usernameLink = e.target.closest('.post-header a');
+    if (usernameLink && usernameLink.href.includes('#')) {
+      e.preventDefault();
+      const targetId = usernameLink.href.split('#')[1];
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+
+  // Audio Toggle Functionality
+  const audio = document.getElementById('background-ambiance');
+  const audioToggleBtn = document.getElementById('audio-toggle');
+  let audioPlayedBefore = localStorage.getItem('mfss_audio_played') === 'true';
+
+  // Attempt to play audio on user interaction
+  function tryPlayAudio() {
+    if (!audioPlayedBefore) { // Only try to autoplay once
+      audio.play().then(() => {
+        audioToggleBtn.textContent = '🔇 Pause Ambiance';
+        localStorage.setItem('mfss_audio_played', 'true');
+        audioPlayedBefore = true;
+      }).catch(error => {
+        // Autoplay was prevented. User will need to manually click.
+        console.log("Autoplay prevented:", error);
+        audioToggleBtn.textContent = '🔊 Play Ambiance';
+      });
+    }
+  }
+
+  // Initial attempt to play audio after user interaction (e.g., first click on the page)
+  document.body.addEventListener('click', tryPlayAudio, { once: true });
+
+
+  audioToggleBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      audioToggleBtn.textContent = '🔇 Pause Ambiance';
+    } else {
+      audio.pause();
+      audioToggleBtn.textContent = '🔊 Play Ambiance';
+    }
+  });
+
+
+})();
+</script>
+</body>
+</html>
